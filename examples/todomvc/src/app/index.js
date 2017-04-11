@@ -38,6 +38,10 @@ export default class App extends Component {
 		}
 	};
 
+	updateNewTodo = e => {
+		this.setState({ newTodo: e.target.value });
+	};
+
 	toggleAll = event => {
 		let checked = event.target.checked;
 		this.model.toggleAll(checked);
@@ -84,7 +88,7 @@ export default class App extends Component {
 						placeholder="What needs to be done?"
 						value={newTodo}
 						onKeyDown={this.handleNewTodoKeyDown}
-						onInput={this.linkState('newTodo')}
+						onInput={this.updateNewTodo}
 						autoFocus={true}
 					/>
 				</header>

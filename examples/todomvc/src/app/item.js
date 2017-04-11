@@ -42,6 +42,10 @@ export default class TodoItem extends Component {
 	handleDestroy = () => {
 		this.props.onDestroy(this.props.todo);
 	};
+	
+	updateEditText = e => {
+		this.setState({ editText: e.target.value });
+	};
 
 	// shouldComponentUpdate({ todo, editing, editText }) {
 	// 	return (
@@ -76,7 +80,7 @@ export default class TodoItem extends Component {
 						class="edit"
 						value={editText}
 						onBlur={this.handleSubmit}
-						onInput={this.linkState('editText')}
+						onInput={this.updateEditText}
 						onKeyDown={this.handleKeyDown}
 					/>
 				) }
