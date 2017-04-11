@@ -2,7 +2,8 @@ import { createElement, Component } from 'didact';
 import { pluralize } from './util';
 
 export default class TodoFooter extends Component {
-	render({ nowShowing, count, completedCount, onClearCompleted }) {
+	render() {
+		let { nowShowing, count, completedCount, onClearCompleted } = this.props;
 		return (
 			<footer class="footer">
 				<span class="todo-count">

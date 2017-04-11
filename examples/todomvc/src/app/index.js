@@ -68,7 +68,8 @@ export default class App extends Component {
 		this.model.clearCompleted();
 	};
 
-	render({ }, { nowShowing=ALL_TODOS, newTodo, editing }) {
+	render() {
+		let { nowShowing=ALL_TODOS, newTodo, editing } = this.state;
 		let { todos } = this.model,
 			shownTodos = todos.filter( FILTERS[nowShowing] ),
 			activeTodoCount = todos.reduce( (a, todo) => a + (todo.completed ? 0 : 1), 0),

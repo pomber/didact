@@ -56,7 +56,9 @@ export default class TodoItem extends Component {
 		if (node) node.focus();
 	}
 
-	render({ todo:{ title, completed }, onToggle, onDestroy, editing }, { editText }) {
+	render() {
+		let { todo:{ title, completed }, onToggle, onDestroy, editing } = this.props;
+		let { editText } = this.state;
 		return (
 			<li class={{ completed, editing }}>
 				<div class="view">
