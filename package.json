@@ -5,8 +5,13 @@
 	"license": "MIT",
 	"repository": "hexacta/didact",
 	"author": "pomber <pombopombopombo@gmail.com>",
+	"main": "dist/didact.umd.js",
+	"module": "dist/didact.es.js",
 	"scripts": {
-		"test": "ava"
+		"test": "ava",
+		"build:module": "rollup src/didact.js -f es -n didact -o dist/didact.es.js",
+		"build:main": "rollup src/didact.js -f umd -n didact -o dist/didact.umd.js",
+		"build": "run-p build:module build:main"
 	},
 	"keywords": [
 		"react"
@@ -18,6 +23,7 @@
 		"babel-preset-env": "^1.3.3",
 		"babel-register": "^6.24.1",
 		"browser-env": "^2.0.29",
+		"npm-run-all": "^4.0.2",
 		"rollup": "^0.41.6"
 	},
 	"ava": {
