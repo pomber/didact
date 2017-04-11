@@ -55,3 +55,10 @@ test("render component with basic child", t => {
   render(element, root);
   t.is(root.innerHTML, "<ul><li>one</li><li>two</li></ul>");
 });
+
+test("render null children", t => {
+  const root = t.context.root;
+  const element = createElement("div", {}, null, "foo", null);
+  render(element, root);
+  t.is(root.innerHTML, "<div>foo</div>");
+});
