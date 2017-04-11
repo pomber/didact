@@ -1,6 +1,6 @@
 {
   "name": "didact",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A didactic alternative to React.",
   "license": "MIT",
   "repository": "hexacta/didact",
