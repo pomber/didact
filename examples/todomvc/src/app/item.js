@@ -1,4 +1,4 @@
-import { h, Component } from 'preact';
+import { createElement, Component } from 'didact';
 
 const ESCAPE_KEY = 27;
 const ENTER_KEY = 13;

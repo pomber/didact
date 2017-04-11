@@ -12,12 +12,12 @@ export default {
 		babel({
 			babelrc: false,
 			presets: [
-				['es2015', { loose:true, modules:false }],
-				'stage-0'
+				'es2016',
+				'stage-1'
 			],
 			plugins: [
 				'external-helpers',
-				['transform-react-jsx', { pragma:'h' }]
+				['transform-react-jsx', { pragma:'createElement' }]
 			]
 		}),
 		nodeResolve({ jsnext:true }),

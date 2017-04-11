@@ -1,9 +1,9 @@
-# Preact TodoMVC
+# Didact TodoMVC
 
-[**Demo**](https://preact-todomvc.surge.sh)
+[**Demo**](https://didact-todomvc.surge.sh)
 
-TodoMVC done in [Preact]. The app is 6kb of minified + gzipped JavaScript.
+TodoMVC done in [Didact].  
 
-This is an ES6 + Preact port of the [ES5 + React TodoMVC example](https://github.com/tastejs/todomvc/tree/gh-pages/examples/react).
+This is an ES6 + Didact port of the [ES6 + Preact port](https://github.com/developit/preact-todomvc) of the [ES5 + React TodoMVC example](https://github.com/tastejs/todomvc/tree/gh-pages/examples/react).
 
-[preact]: https://github.com/developit/preact
+[didact]: https://github.com/hexacta/didact

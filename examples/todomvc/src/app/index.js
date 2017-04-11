@@ -1,4 +1,4 @@
-import { h, Component } from 'preact';
+import { createElement, Component } from 'didact';
 import TodoModel from './model';
 import TodoFooter from './footer';
 import TodoItem from './item';
@@ -14,7 +14,7 @@ const FILTERS = {
 export default class App extends Component {
 	constructor() {
 		super();
-		this.model = new TodoModel('preact-todos', () => this.setState({}) );
+		this.model = new TodoModel('didact-todos', () => this.setState({}) );
 		addEventListener('hashchange', this.handleRoute.bind(this));
 		this.handleRoute();
 	}

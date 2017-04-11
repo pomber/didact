@@ -1,4 +1,4 @@
-import { h, render } from 'preact';
+import { createElement, render } from 'didact';
 import App from './app';
 // import 'todomvc-common';
 // import 'todomvc-common/base.css';
