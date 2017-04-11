@@ -14,7 +14,8 @@
     "test": "ava",
     "build:module": "rollup src/didact.js -f es -n didact -o dist/didact.es.js",
     "build:main": "rollup src/didact.js -f umd -n didact -o dist/didact.umd.js",
-    "build": "run-p build:module build:main"
+    "build": "run-p build:module build:main",
+    "prepublish": "npm run build"
   },
   "keywords": [
     "react"
