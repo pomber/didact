@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Didact - Hello World</title>
+</head>
+
+<body>
+	<div id="root"></div>
+	<script src="https://unpkg.com/didact"></script>
+	<script>
+		const root = document.getElementById("root");
+		class App extends didact.Component {
+			render() {
+				return didact.createElement("div", null, "Hello ", this.props.name, "!");
+			}
+		}
+		const element = didact.createElement(App, {name: "World"});
+		didact.render(element, root);
+	</script>
+</body>
+
+</html>
