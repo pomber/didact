@@ -1573,9 +1573,9 @@ detect-indent@^4.0.0:
   dependencies:
     repeating "^2.0.0"
 
-didact@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/didact/-/didact-0.1.0.tgz#be62fb887a0ccbcc9f804b3914c6804002b137a7"
+didact@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/didact/-/didact-0.2.0.tgz#f7eb1ca98ede680d216f52c7cad069197d1a8b49"
 
 diffie-hellman@^5.0.0:
   version "5.0.2"
