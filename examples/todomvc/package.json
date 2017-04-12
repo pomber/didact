@@ -4,7 +4,8 @@
   "description": "TodoMVC done in Didact",
   "main": "index.js",
   "scripts": {
-    "predev": "npm run build",
+    "todo:predev": "npm run build",
+    "wp": "webpack",
     "dev": "webpack-dev-server --content-base build",
     "start": "http-server build -p 8080",
     "prestart": "npm run build",
@@ -31,7 +32,7 @@
     "babel-preset-es2016": "^6.24.1",
     "babel-preset-stage-0": "^6.5.0",
     "css-loader": "^0.26.0",
-    "extract-text-webpack-plugin": "^1.0.1",
+    "extract-text-webpack-plugin": "^2.1.0",
     "gh-pages": "^0.12.0",
     "http-server": "^0.9.0",
     "mkdirp": "^0.5.1",
@@ -42,8 +43,8 @@
     "rollup-plugin-commonjs": "^5.0.5",
     "rollup-plugin-node-resolve": "^2.0.0",
     "style-loader": "^0.13.0",
-    "webpack": "^1.12.14",
-    "webpack-dev-server": "^1.14.1"
+    "webpack": "^2.3.3",
+    "webpack-dev-server": "^2.4.2"
   },
   "dependencies": {
     "didact": "^0.1.0",
