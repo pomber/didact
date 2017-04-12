@@ -62,3 +62,9 @@ test("render null children", t => {
   render(element, root);
   t.is(root.innerHTML, "<div>foo</div>");
 });
+
+test("don't render false attributes", t => {
+  const root = t.context.root;
+  render(<input type="checkbox" checked={false}/>, root);
+  t.is(root.innerHTML, '<input type="checkbox">');
+});

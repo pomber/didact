@@ -29,7 +29,7 @@ function setProperty(dom, name, value) {
     // It's an event handler
     const eventType = name.toLowerCase().substring(2);
     dom.addEventListener(eventType, value);
-  } else {
+  } else if (value !== null && value !== false) {
     dom.setAttribute(name, value);
   }
 }
