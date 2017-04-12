@@ -16,7 +16,7 @@
   "keywords": [
     "didact"
   ],
-  "author": "Jason Miller <jason@developit.ca>",
+  "author": "pomber <pombopombopombo@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.5.2",
@@ -46,7 +46,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
-    "didact": "^0.0.2",
+    "didact": "^0.1.0",
     "todomvc-app-css": "^2.0.3",
     "todomvc-common": "^1.0.2"
   }

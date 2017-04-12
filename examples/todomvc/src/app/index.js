@@ -16,14 +16,20 @@ export default class App extends Component {
 		super();
 		this.model = new TodoModel('didact-todos', () => this.setState({}) );
 		addEventListener('hashchange', this.handleRoute.bind(this));
-		this.handleRoute();
+		let nowShowing = this.getRoute();
+		this.state = { nowShowing };
 	}
 
-	handleRoute() {
+	getRoute() {
 		let nowShowing = String(location.hash||'').split('/').pop();
 		if (!FILTERS[nowShowing]) {
 			nowShowing = 'all';
 		}
+		return nowShowing;
+	}
+
+	handleRoute() {
+		let nowShowing = this.getRoute();
 		this.setState({ nowShowing });
 	}
 
