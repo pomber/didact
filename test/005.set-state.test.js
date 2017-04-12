@@ -45,3 +45,16 @@ test("change component state", t => {
 	callback();
 	t.is(root.innerHTML, "<div>off</div>");
 });
+
+test("use state without initializing", t => {
+  const root = t.context.root;
+  class Foo extends Component {
+    render() {
+      const {name} = this.state;
+      return <div>Hello {name}</div>;
+    }
+  }
+  const element = <Foo />;
+  render(element, root);
+  t.is(root.innerHTML, "<div>Hello </div>");
+});

@@ -3,6 +3,7 @@ import { createDom } from "../src/dom-render";
 export default class Component {
 	constructor(props) {
 		this.props = props;
+		this.state = this.state || {};
 	}
 
 	setState(partialState) {
