@@ -37,7 +37,7 @@ function setProperty(dom, name, value) {
 function setChildren(dom, children) {
   children
     // Filter falsy children
-    .filter(child => child)
+    .filter(child => child != null)
     .forEach(child => {
       addChild(dom, child);
     });
