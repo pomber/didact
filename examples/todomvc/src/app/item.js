@@ -63,8 +63,11 @@ export default class TodoItem extends Component {
 	render() {
 		let { todo:{ title, completed }, onToggle, onDestroy, editing } = this.props;
 		let { editText } = this.state;
+		let className = completed ? "completed" : "";
+		className += editing ? " editing" : "";
+
 		return (
-			<li class={{ completed, editing }}>
+			<li class={className}>
 				<div class="view">
 					<input
 						class="toggle"
