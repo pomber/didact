@@ -57,7 +57,7 @@ test("maintain child state", t => {
 
     render() {
       let handleChange = this.handleChange.bind(this);
-      return <div><Child name="Foo" onChange={this.handleChange}/></div>;
+      return <div><Child name="Foo" onChange={handleChange} /></div>;
     }
   }
   render(<Parent />, root);

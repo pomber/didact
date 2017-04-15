@@ -18,7 +18,7 @@ class CompositeComponent {
     this.currentElement = nextElement || this.currentElement;
     const { props } = this.currentElement;
     this.publicInstance.props = props;
-		const prevChildElement = this.childInstance.currentElement;
+    const prevChildElement = this.childInstance.currentElement;
     const nextChildElement = this.publicInstance.render();
     if (prevChildElement.type === nextChildElement.type) {
       this.childInstance.update(nextChildElement);
@@ -110,13 +110,13 @@ class DomComponent {
     for (let i = 0; i < length; i++) {
       const prevChildElement = prevChildElements[i];
       const nextChildElement = nextChildElements[i];
-      if (!prevChildElement) {
+      if (prevChildElement === undefined) {
         // Add new child
         const childInstance = instantiate(nextChildElement);
         nextChildInstances.push(childInstance);
         const childDom = childInstance.mount();
         this.dom.appendChild(childDom);
-      } else if (!nextChildElement) {
+      } else if (nextChildElement === undefined) {
         // Remove old child
         const childInstance = prevChildInstances[i];
         const childDom = childInstance.getDom();
@@ -151,17 +151,17 @@ class DomComponent {
 class TextComponent {
   constructor(element) {
     this.text = "" + element;
-		this.dom = null;
+    this.dom = null;
   }
 
   mount() {
-		this.dom = document.createTextNode(this.text)
+    this.dom = document.createTextNode(this.text);
     return this.dom;
   }
 
   update(nextElement) {
     const nextText = "" + element;
-		this.dom.nodeValue = nextText;
+    this.dom.nodeValue = nextText;
   }
 
   getDom() {
