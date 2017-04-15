@@ -91,10 +91,10 @@ export default class App extends Component {
 
 		return (
 			<div>
-				<header class="header">
+				<header className="header">
 					<h1>todos</h1>
 					<input
-						class="new-todo"
+						className="new-todo"
 						placeholder="What needs to be done?"
 						value={newTodo}
 						onKeyDown={this.handleNewTodoKeyDown}
@@ -104,14 +104,14 @@ export default class App extends Component {
 				</header>
 
 				{ todos.length ? (
-					<section class="main">
+					<section className="main">
 						<input
-							class="toggle-all"
+							className="toggle-all"
 							type="checkbox"
 							onChange={this.toggleAll}
 							checked={activeTodoCount === 0}
 						/>
-						<ul class="todo-list">
+						<ul className="todo-list">
 							{ shownTodos.map( todo => (
 								<TodoItem
 									todo={todo}

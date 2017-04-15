@@ -67,20 +67,20 @@ export default class TodoItem extends Component {
 		className += editing ? " editing" : "";
 
 		return (
-			<li class={className}>
-				<div class="view">
+			<li className={className}>
+				<div className="view">
 					<input
-						class="toggle"
+						className="toggle"
 						type="checkbox"
 						checked={completed}
 						onChange={this.toggle}
 					/>
 					<label onDblClick={this.handleEdit}>{title}</label>
-					<button class="destroy" onClick={this.handleDestroy} />
+					<button className="destroy" onClick={this.handleDestroy} />
 				</div>
 				{ editing && (
 					<input
-						class="edit"
+						className="edit"
 						value={editText}
 						onBlur={this.handleSubmit}
 						onInput={this.updateEditText}

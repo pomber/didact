@@ -5,25 +5,25 @@ export default class TodoFooter extends Component {
 	render() {
 		let { nowShowing, count, completedCount, onClearCompleted } = this.props;
 		return (
-			<footer class="footer">
-				<span class="todo-count">
+			<footer className="footer">
+				<span className="todo-count">
 					<strong>{count}</strong> {pluralize(count, 'item')} left
 				</span>
-				<ul class="filters">
+				<ul className="filters">
 					<li>
-						<a href="#/" class={nowShowing=='all' && 'selected'}>All</a>
+						<a href="#/" className={nowShowing=='all' && 'selected'}>All</a>
 					</li>
 					{' '}
 					<li>
-						<a href="#/active" class={nowShowing=='active' && 'selected'}>Active</a>
+						<a href="#/active" className={nowShowing=='active' && 'selected'}>Active</a>
 					</li>
 					{' '}
 					<li>
-						<a href="#/completed" class={nowShowing=='completed' && 'selected'}>Completed</a>
+						<a href="#/completed" className={nowShowing=='completed' && 'selected'}>Completed</a>
 					</li>
 				</ul>
 				{ completedCount > 0 && (
-					<button class="clear-completed" onClick={onClearCompleted}>
+					<button className="clear-completed" onClick={onClearCompleted}>
 						Clear completed
 					</button>
 				) }
