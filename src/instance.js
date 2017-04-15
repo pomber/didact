@@ -62,9 +62,7 @@ class DomComponent {
 
     // Set children
     const childElements = props.children || [];
-    this.childInstances = childElements
-      .filter(child => child != null)
-      .map(instantiate);
+    this.childInstances = childElements.map(instantiate);
     this.childInstances
       .map(childInstance => childInstance.mount())
       .forEach(childDom => this.dom.appendChild(childDom));
