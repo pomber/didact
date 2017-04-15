@@ -151,15 +151,21 @@ class DomComponent {
 class TextComponent {
   constructor(element) {
     this.text = "" + element;
+		this.dom = null;
   }
 
   mount() {
-    return document.createTextNode(this.text);
+		this.dom = document.createTextNode(this.text)
+    return this.dom;
   }
 
   update(nextElement) {
     const nextText = "" + element;
-    return document.createTextNode(this.text);
+		this.dom.nodeValue = nextText;
+  }
+
+  getDom() {
+    return this.dom;
   }
 }
 
