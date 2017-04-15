@@ -68,3 +68,23 @@ test("maintain child state", t => {
   root.firstChild.firstChild.dispatchEvent(evt);
   t.is(root.innerHTML, "<div><div>Foo-1</div></div>");
 });
+
+test("update value property", t => {
+  const root = t.context.root;
+  let changeState;
+
+  class Foo extends Component {
+    constructor(props) {
+      super(props);
+      this.state = { value: "init" };
+      changeState = this.setState.bind(this);
+    }
+    render() {
+      return <input value={this.state.value} />;
+    }
+  }
+  render(<Foo />, root);
+  t.is(root.firstChild.value, "init");
+  changeState({ value: null });
+  t.is(root.firstChild.value, "");
+});

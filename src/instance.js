@@ -50,7 +50,7 @@ class DomComponent {
     Object.keys(props).filter(isAttribute).forEach(name => {
       const value = props[name];
       if (value != null && value !== false) {
-        this.dom.setAttribute(name, value);
+        this.dom[name] = value;
       }
     });
 
@@ -76,14 +76,14 @@ class DomComponent {
 
     // Remove attributes
     Object.keys(prevProps).filter(isAttribute).forEach(name => {
-      this.dom.removeAttribute(name);
+      this.dom[name] = null;
     });
 
     // Set attributes
     Object.keys(nextProps).filter(isAttribute).forEach(name => {
       const value = nextProps[name];
       if (value != null && value !== false) {
-        this.dom.setAttribute(name, value);
+        this.dom[name] = value;
       }
     });
 

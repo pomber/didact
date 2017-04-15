@@ -28,7 +28,7 @@ test("render div", t => {
 
 test("render div with props", t => {
   const root = t.context.root;
-  const element = <div tabindex="2" />;
+  const element = <div tabIndex="2" />;
   render(element, root);
   t.is(root.innerHTML, '<div tabindex="2"></div>');
 });
@@ -53,7 +53,7 @@ test("render nested elements with props", t => {
   const label = "foo";
   const element = (
     <div>
-      <a href={link}>Go to <b class="x">{label}</b>.</a>
+      <a href={link}>Go to <b className="x">{label}</b>.</a>
       <a>bar</a>
     </div>
   );
