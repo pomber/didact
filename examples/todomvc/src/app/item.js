@@ -55,11 +55,6 @@ export default class TodoItem extends Component {
 	// 	);
 	// }
 
-	componentDidUpdate() {
-		let node = this.base && this.base.querySelector('.edit');
-		if (node) node.focus();
-	}
-
 	render() {
 		let { todo:{ title, completed }, onToggle, onDestroy, editing } = this.props;
 		let { editText } = this.state;
@@ -81,6 +76,7 @@ export default class TodoItem extends Component {
 				{ editing && (
 					<input
 						className="edit"
+						autoFocus
 						value={editText}
 						onBlur={this.handleSubmit}
 						onInput={this.updateEditText}
