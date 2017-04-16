@@ -4,15 +4,15 @@
   "description": "TodoMVC done in Didact",
   "main": "index.js",
   "scripts": {
-    "todo:predev": "npm run build",
-    "wp": "webpack",
+    "prepare": "npm run build",
     "dev": "webpack-dev-server --content-base build",
     "start": "http-server build -p 8080",
     "prestart": "npm run build",
-    "build": "npm run -s build:rollup",
+    "build": "npm run build:rollup",
     "build:webpack": "mkdirp build && ncp src/index.html build/index.html && webpack -p",
-    "build:rollup": "rm -rf build && mkdirp build/todomvc-common && ncp src/index.html build/index.html && rollup -c rollup.config.js && cp node_modules/todomvc-common/base.* build/todomvc-common/ && cp node_modules/todomvc-app-css/index.css build/todomvc.css",
-    "deploy": "gh-pages -d build"
+    "build:rollup": "rimraf build && mkdirp build/todomvc-common && ncp src/index.html build/index.html && rollup -c rollup.config.js && cp node_modules/todomvc-common/base.* build/todomvc-common/ && cp node_modules/todomvc-app-css/index.css build/todomvc.css",
+    "predeploy": "npm run build",
+    "deploy": "surge ./build"
   },
   "keywords": [
     "didact"
@@ -38,11 +38,13 @@
     "mkdirp": "^0.5.1",
     "ncp": "^2.0.0",
     "replace-bundle-webpack-plugin": "^1.0.0",
+    "rimraf": "^2.6.1",
     "rollup": "^0.36.4",
     "rollup-plugin-babel": "^2.6.1",
     "rollup-plugin-commonjs": "^5.0.5",
     "rollup-plugin-node-resolve": "^2.0.0",
     "style-loader": "^0.13.0",
+    "surge": "^0.19.0",
     "webpack": "^2.3.3",
     "webpack-dev-server": "^2.4.2"
   },
