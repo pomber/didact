@@ -49,7 +49,13 @@ class DomComponent {
     // Set attributes
     Object.keys(props).filter(isAttribute).forEach(name => {
       const value = props[name];
-      if (value != null && value !== false) {
+      if (name === "autoFocus") {
+        if (value === false) {
+          this.dom.blur();
+        } else {
+          this.dom.focus();
+        }
+      } else if (value != null && value !== false) {
         this.dom[name] = value;
       }
     });
@@ -82,7 +88,13 @@ class DomComponent {
     // Set attributes
     Object.keys(nextProps).filter(isAttribute).forEach(name => {
       const value = nextProps[name];
-      if (value != null && value !== false) {
+      if (name === "autoFocus") {
+        if (value === false) {
+          this.dom.blur();
+        } else {
+          this.dom.focus();
+        }
+      } else if (value != null && value !== false) {
         this.dom[name] = value;
       }
     });
@@ -117,6 +129,8 @@ class DomComponent {
       } else if (nextChildElement === undefined) {
         // Remove old child
         const childInstance = prevChildInstances[i];
+        // Remove events handlers from child (because blur is triggered by removeChild)
+        childInstance.update({ type: prevChildElement.type, props: {} });
         const childDom = childInstance.getDom();
         this.dom.removeChild(childDom);
       } else if (
