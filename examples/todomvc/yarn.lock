@@ -1637,9 +1637,9 @@ detect-indent@^4.0.0:
   dependencies:
     repeating "^2.0.0"
 
-didact@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/didact/-/didact-1.1.0.tgz#05cc0121d8ac25eb310ff6e90c46bea1c4efad75"
+didact@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/didact/-/didact-1.1.1.tgz#041be38562a3420eff483ac9eeb33c908cc47096"
 
 diffie-hellman@^5.0.0:
   version "5.0.2"
@@ -2693,11 +2693,11 @@ minimist@0.0.8, minimist@~0.0.1:
   version "0.0.8"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-0.0.8.tgz#857fcabfc3397d2625b8228262e86aa7a011b05d"
 
-minimist@1.1.1:
+minimist@1.1.1, minimist@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.1.1.tgz#1bc2bc71658cdca5712475684363615b0b4f695b"
 
-minimist@^1.1.0, minimist@^1.2.0:
+minimist@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.0.tgz#a35008b20f41383eec1fb914f4cd5df79a264284"
 
