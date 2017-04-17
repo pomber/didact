@@ -1,0 +1,56 @@
+{
+  "name": "didact-todomvc",
+  "version": "0.2.0",
+  "description": "TodoMVC done in Didact",
+  "main": "index.js",
+  "scripts": {
+    "prepare": "npm run build",
+    "dev": "webpack-dev-server --content-base build",
+    "start": "http-server build -p 8080",
+    "prestart": "npm run build",
+    "build": "npm run build:rollup",
+    "build:webpack": "mkdirp build && ncp src/index.html build/index.html && webpack -p",
+    "build:rollup": "rimraf build && mkdirp build/todomvc-common && ncp src/index.html build/index.html && rollup -c rollup.config.js && cp node_modules/todomvc-common/base.* build/todomvc-common/ && cp node_modules/todomvc-app-css/index.css build/todomvc.css",
+    "predeploy": "npm run build",
+    "deploy": "surge ./build"
+  },
+  "keywords": [
+    "didact"
+  ],
+  "author": "pomber <pombopombopombo@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.5.2",
+    "babel-loader": "^6.2.3",
+    "babel-plugin-external-helpers": "^6.18.0",
+    "babel-plugin-transform-class-properties": "^6.5.2",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-react-jsx": "^6.5.2",
+    "babel-preset-babili": "0.0.9",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-preset-es2015-loose": "^8.0.0",
+    "babel-preset-es2016": "^6.24.1",
+    "babel-preset-stage-0": "^6.5.0",
+    "css-loader": "^0.26.0",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "gh-pages": "^0.12.0",
+    "http-server": "^0.9.0",
+    "mkdirp": "^0.5.1",
+    "ncp": "^2.0.0",
+    "replace-bundle-webpack-plugin": "^1.0.0",
+    "rimraf": "^2.6.1",
+    "rollup": "^0.36.4",
+    "rollup-plugin-babel": "^2.6.1",
+    "rollup-plugin-commonjs": "^5.0.5",
+    "rollup-plugin-node-resolve": "^2.0.0",
+    "style-loader": "^0.13.0",
+    "surge": "^0.19.0",
+    "webpack": "^2.3.3",
+    "webpack-dev-server": "^2.4.2"
+  },
+  "dependencies": {
+    "didact": "^1.1.1",
+    "todomvc-app-css": "^2.0.3",
+    "todomvc-common": "^1.0.2"
+  }
+}
