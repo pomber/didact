@@ -129,8 +129,10 @@ class DomComponent {
       } else if (nextChildElement === undefined) {
         // Remove old child
         const childInstance = prevChildInstances[i];
-        // Remove events handlers from child (because blur is triggered by removeChild)
-        childInstance.update({ type: prevChildElement.type, props: {} });
+        // Remove blur handler from child (because blur is triggered by removeChild)
+        if (prevChildElement.props["onBlur"]) {
+          this.dom.removeEventListener("onBlur", prevChildElement["onBlur"]);
+        }
         const childDom = childInstance.getDom();
         this.dom.removeChild(childDom);
       } else if (
@@ -146,7 +148,7 @@ class DomComponent {
         nextChildInstances.push(nextChildInstance);
         const nextChildDom = nextChildInstance.mount();
         const prevChildInstance = prevChildInstances[i];
-        const prevChildDom = prevChildInstance.getDom(); // FIX fails for text
+        const prevChildDom = prevChildInstance.getDom();
         this.dom.replaceChild(nextChildDom, prevChildDom);
       }
     }
