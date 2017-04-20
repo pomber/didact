@@ -1,3 +1,5 @@
+import Component from "./component";
+
 class CompositeComponent {
   constructor(element) {
     this.currentElement = element;
@@ -7,8 +9,8 @@ class CompositeComponent {
 
   mount() {
     const { type, props } = this.currentElement;
-    this.publicInstance = new type(props);
-    this.publicInstance.__updater = this.update.bind(this);
+    const updater = this.update.bind(this);
+    this.publicInstance = Component.__createPublicInstance(type, props, updater);
     const childElement = this.publicInstance.render();
     this.childInstance = instantiate(childElement);
     return this.childInstance.mount();
