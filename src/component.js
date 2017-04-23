@@ -1,18 +1,21 @@
+import { updateInstance } from "./reconciler";
+
 export default class Component {
-  static __createPublicInstance(type, props, updater) {
+  static __create(element, internalInstance) {
+    const { type, props } = element;
     const publicInstance = new type(props);
-    publicInstance.__updater = updater;
+    publicInstance.__internalInstance = internalInstance;
     return publicInstance;
   }
 
   constructor(props) {
     this.props = props;
     this.state = this.state || {};
-    this.__updater = null; // Set by __createPublicInstance
+    this.__internalInstance = null; // Set by __create
   }
 
   setState(partialState) {
     this.state = Object.assign({}, this.state, partialState);
-    this.__updater();
+    updateInstance(this.__internalInstance);
   }
 }

@@ -10,7 +10,11 @@ class CompositeComponent {
   mount() {
     const { type, props } = this.currentElement;
     const updater = this.update.bind(this);
-    this.publicInstance = Component.__createPublicInstance(type, props, updater);
+    this.publicInstance = Component.__createPublicInstance(
+      type,
+      props,
+      updater
+    );
     const childElement = this.publicInstance.render();
     this.childInstance = instantiate(childElement);
     return this.childInstance.mount();
@@ -46,7 +50,7 @@ class DomComponent {
 
   mount() {
     const { type, props } = this.currentElement;
-    this.dom = document.createElement(type);
+    this.dom = createNode(this.currentElement);
 
     // Set attributes
     Object.keys(props).filter(isAttribute).forEach(name => {
@@ -164,31 +168,16 @@ class DomComponent {
   }
 }
 
-class TextComponent {
-  constructor(element) {
-    this.text = "" + element;
-    this.dom = null;
-  }
-
-  mount() {
-    this.dom = document.createTextNode(this.text);
-    return this.dom;
-  }
-
-  update(nextElement) {
-    const nextText = "" + element;
-    this.dom.nodeValue = nextText;
-  }
-
-  getDom() {
-    return this.dom;
+function createNode(element) {
+  if (element.type === "TEXT ELEMENT") {
+    return document.createTextNode("");
+  } else {
+    return document.createElement(element.type);
   }
 }
 
 export function instantiate(element) {
-  if (typeof element === "string" || typeof element === "number") {
-    return new TextComponent(element);
-  } else if (typeof element.type === "string") {
+  if (typeof element.type === "string") {
     return new DomComponent(element);
   } else {
     return new CompositeComponent(element);
