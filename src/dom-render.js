@@ -1,6 +1,5 @@
-import { createInstance } from "./reconciler";
+import { reconcile } from "./new-reconciler";
 
 export function render(element, container) {
-  const instance = createInstance(element);
-  container.appendChild(instance.dom);
+  const instance = reconcile(container, null, element);
 }

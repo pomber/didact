@@ -103,7 +103,7 @@ function reconcileChildren(
       nextChildInstances.push(childInstance);
     } else {
       const nextChildInstance = createInstance(nextChildElement);
-      DomUtils.replaceChild(dom, nextChildInstance.dom, childInstance.dom);
+      DomUtils.replaceChild(nextChildInstance.dom, childInstance.dom);
       nextChildInstances.push(nextChildInstance);
     }
   }
