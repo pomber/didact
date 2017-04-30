@@ -24,22 +24,15 @@ export function reconcile(parentDom, instance, element) {
       instance.element.props,
       element.props
     );
-    instance.childInstances = reconcileChildren(
-      instance.dom,
-      instance.childInstances,
-      nextChildElements
-    );
+    instance.childInstances = reconcileChildren(instance, nextChildElements);
     instance.element = element;
     return instance;
   } else {
     //Update composite instance
     instance.publicInstance.props = element.props;
-    const newChildElement = instance.publicInstance.render();
-    const childInstance = reconcile(
-      parentDom,
-      instance.childInstance,
-      newChildElement
-    );
+    const childElement = instance.publicInstance.render();
+    const oldChildInstance = instance.childInstance;
+    const childInstance = reconcile(parentDom, oldChildInstance, childElement);
     instance.dom = childInstance.dom;
     instance.childInstance = childInstance;
     instance.element = element;
@@ -82,10 +75,10 @@ function instantiate(element) {
     const childElement = publicInstance.render();
     const childInstance = instantiate(childElement);
 
-    instance.element = element;
-    instance.publicInstance = publicInstance;
-    instance.childInstance = childInstance;
     instance.dom = childInstance.dom;
+    instance.element = element;
+    instance.childInstance = childInstance;
+    instance.publicInstance = publicInstance;
   }
 
   return instance;

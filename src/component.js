@@ -1,4 +1,4 @@
-import { updateInstance } from "./reconciler";
+import { reconcile } from "./new-reconciler";
 
 export default class Component {
   static __create(element, internalInstance) {
@@ -18,4 +18,10 @@ export default class Component {
     this.state = Object.assign({}, this.state, partialState);
     updateInstance(this.__internalInstance);
   }
+}
+
+function updateInstance(internalInstance) {
+  const parentDom = internalInstance.dom.parentNode;
+  const element = internalInstance.element;
+  reconcile(parentDom, internalInstance, element);
 }
