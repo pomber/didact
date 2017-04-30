@@ -11,7 +11,7 @@ test("create component", t => {
   }
 
   const element = <Foo />;
-  const expected = { type: Foo, props: {} };
+  const expected = { type: Foo, props: { children: [] } };
   t.deepEqual(element, expected);
 });
 
@@ -23,7 +23,7 @@ test("create component with props", t => {
   }
 
   const element = <Foo bar="baz" />;
-  const expected = { type: Foo, props: { bar: "baz" } };
+  const expected = { type: Foo, props: { bar: "baz", children: [] } };
   t.deepEqual(element, expected);
 });
 
@@ -35,7 +35,7 @@ test("create nested components", t => {
   }
 
   const element = <Foo><Foo /></Foo>;
-  const expectedChild = { type: Foo, props: {} };
+  const expectedChild = { type: Foo, props: { children: [] } };
   const expected = { type: Foo, props: { children: [expectedChild] } };
   t.deepEqual(element, expected);
 });
