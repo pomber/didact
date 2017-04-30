@@ -1,4 +1,4 @@
-import { reconcile } from "./new-reconciler";
+import { reconcile } from "./reconciler";
 
 export default class Component {
   static __create(element, internalInstance) {
