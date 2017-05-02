@@ -2,12 +2,12 @@ import * as DomUtils from "./dom-utils";
 import Component from "./component";
 
 export function reconcile(parentDom, instance, element) {
-  if (instance === null) {
+  if (instance == null) {
     //Create element
     const newInstance = instantiate(element);
     DomUtils.appendChild(parentDom, newInstance.dom);
     return newInstance;
-  } else if (element === null) {
+  } else if (element == null) {
     //Remove element
     DomUtils.removeChild(parentDom, instance.dom);
     return null;
