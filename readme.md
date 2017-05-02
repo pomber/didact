@@ -10,7 +10,17 @@ Didact's goal is to make React internals easier to understand by providing a sim
 
 Didact is still under development 🚧. Nevertheless, the current version should be able to at least support the [todo-mvc sample](https://github.com/hexacta/didact/tree/master/examples/todomvc) (ported from Preact).
 
-More documentation and a step-by-step guide to the code coming soon...
+## Step-by-step guide
+
+We are doing a step-by-step guide to the code on Medium. These are the posts of the series so far:
+
+| Medium Post | Code sample |
+| --- | --- |
+| [Introduction](https://engineering.hexacta.com/didact-learning-how-react-works-by-building-it-from-scratch-51007984e5c5) |  |
+| [Rendering DOM elements](https://engineering.hexacta.com/didact-rendering-dom-elements-91c9aa08323b) | [codepen](https://codepen.io/pomber/pen/xddXwq?editors=0010) |
+| [Element creation and JSX](https://engineering.hexacta.com/didact-rendering-dom-elements-91c9aa08323b) | [codepen](https://codepen.io/pomber/pen/xddXwq?editors=0010) |
+| Virtual DOM and reconciliation |  |
+| Components |  |
 
 ## Usage
 
