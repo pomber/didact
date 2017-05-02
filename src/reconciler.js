@@ -51,7 +51,7 @@ function reconcileChildren(instance, nextChildElements) {
     const newChildInstance = reconcile(dom, childInstance, element);
     newChildInstances.push(newChildInstance);
   }
-  return newChildInstances;
+  return newChildInstances.filter(instance => instance != null);
 }
 
 function instantiate(element) {
