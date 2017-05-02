@@ -8,7 +8,7 @@
 
 Didact's goal is to make React internals easier to understand by providing a simpler implementation of the same API. 
 
-Didact is still under development. Nevertheless, the current version should be able to at least support the [todo-mvc sample](https://github.com/hexacta/didact/tree/master/examples/todomvc) (ported from Preact).
+Didact is still under development 🚧. Nevertheless, the current version should be able to at least support the [todo-mvc sample](https://github.com/hexacta/didact/tree/master/examples/todomvc) (ported from Preact).
 
 ## Demos
 [hello-world](https://rawgit.com/hexacta/didact/master/examples/hello-world/index.html)  
