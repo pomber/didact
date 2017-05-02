@@ -10,6 +10,33 @@ Didact's goal is to make React internals easier to understand by providing a sim
 
 Didact is still under development 🚧. Nevertheless, the current version should be able to at least support the [todo-mvc sample](https://github.com/hexacta/didact/tree/master/examples/todomvc) (ported from Preact).
 
+## Usage
+
+Install it with npm or yarn:  
+
+```
+$ yarn add didact
+```
+
+And then use it like you use React:  
+
+```jsx
+/** @jsx Didact.createElement */
+import Didact from 'didact';
+
+class HelloMessage extends Didact.Component {
+  render() {
+    return <div>Hello {this.props.name}</div>;
+  }
+}
+
+Didact.render(
+  <HelloMessage name="John" />,
+  document.getElementById('container')
+);
+```
+
+
 ## Demos
 [hello-world](https://rawgit.com/hexacta/didact/master/examples/hello-world/index.html)  
 [hello-world-jsx](https://rawgit.com/hexacta/didact/master/examples/hello-world-jsx/index.html)  
