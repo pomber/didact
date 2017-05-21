@@ -6,15 +6,13 @@ import { render } from "../src/didact";
 browserEnv(["document"]);
 
 test.beforeEach(t => {
-  const root = document.createElement("div");
-  document.body.appendChild(root);
+  let root = document.getElementById("root");
+  if (!root) {
+    root = document.createElement("div");
+    root.id = "root";
+    document.body.appendChild(root);
+  }
   t.context.root = root;
-});
-
-test.afterEach.always(t => {
-  const root = t.context.root;
-  root.innerHTML = "";
-  document.body.removeChild(root);
 });
 
 test("render div", t => {
