@@ -1,3 +1,5 @@
+import { updateDomProperties } from "./dom-utils";
+
 let rootInstance = null;
 
 export function render(element, container) {
@@ -27,18 +29,7 @@ function instantiate(element) {
     ? document.createTextNode("")
     : document.createElement(type);
 
-  // Add event listeners
-  const isListener = name => name.startsWith("on");
-  Object.keys(props).filter(isListener).forEach(name => {
-    const eventType = name.toLowerCase().substring(2);
-    dom.addEventListener(eventType, props[name]);
-  });
-
-  // Set properties
-  const isAttribute = name => !isListener(name) && name != "children";
-  Object.keys(props).filter(isAttribute).forEach(name => {
-    dom[name] = props[name];
-  });
+  updateDomProperties(dom, [], props);
 
   // Instantiate and append children
   const childElements = props.children || [];
