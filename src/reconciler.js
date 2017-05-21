@@ -1,4 +1,24 @@
-export function render(element, parentDom) {
+let rootInstance = null;
+
+export function render(element, container) {
+  const prevInstance = rootInstance;
+  const nextInstance = reconcile(container, prevInstance, element);
+  rootInstance = nextInstance;
+}
+
+function reconcile(parentDom, instance, element) {
+  if (instance == null) {
+    const newInstance = instantiate(element);
+    parentDom.appendChild(newInstance.dom);
+    return newInstance;
+  } else {
+    const newInstance = instantiate(element);
+    parentDom.replaceChild(newInstance.dom, instance.dom);
+    return newInstance;
+  }
+}
+
+function instantiate(element) {
   const { type, props } = element;
 
   // Create DOM element
@@ -20,10 +40,12 @@ export function render(element, parentDom) {
     dom[name] = props[name];
   });
 
-  // Render children
+  // Instantiate and append children
   const childElements = props.children || [];
-  childElements.forEach(childElement => render(childElement, dom));
+  const childInstances = childElements.map(instantiate);
+  const childDoms = childInstances.map(childInstance => childInstance.dom);
+  childDoms.forEach(childDom => dom.appendChild(childDom));
 
-  // Append to parent
-  parentDom.appendChild(dom);
+  const instance = { dom, element, childInstances };
+  return instance;
 }
