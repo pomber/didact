@@ -14,8 +14,6 @@ Didact's goal is to make React internals easier to understand by providing a sim
 
 ## Step-by-step guide
 
-We are doing a step-by-step guide to the code on Medium. These are the posts of the series so far:
-
 | Medium Post | Code sample | Commit |
 | --- | :---: | :---: |
 | [Introduction](https://engineering.hexacta.com/didact-learning-how-react-works-by-building-it-from-scratch-51007984e5c5) |  |  | 
@@ -50,8 +48,28 @@ And then use it like you use React:
 import Didact from 'didact';
 
 class HelloMessage extends Didact.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 1
+    };
+  }
+
+  handleClick() {
+    this.setState({
+      count: this.state.count + 1
+    });
+  }
+
   render() {
-    return <div>Hello {this.props.name}</div>;
+    const name = this.props.name;
+    const times = this.state.count;
+    return (
+      <div onClick={e => this.handleClick()}>
+        Hello {name + "!".repeat(times)}
+      </div>
+    );
   }
 }
 
