@@ -1,6 +1,6 @@
-<p align="center"><img src="https://cloud.githubusercontent.com/assets/1911623/25565381/339d8c36-2d9c-11e7-89ae-8f6c32adf35f.png"></p>
+<p align="center"><img src="https://cloud.githubusercontent.com/assets/1911623/26355007/72cec3c6-3f9d-11e7-936f-e475f1f874ea.png"></p>
 
-#
+# Didact
 [![Build Status](https://travis-ci.org/hexacta/didact.svg?branch=master)](https://travis-ci.org/hexacta/didact) [![npm version](https://img.shields.io/npm/v/didact.svg?style=flat)](https://www.npmjs.com/package/didact)
  
 > A DIY guide to build your own React
