@@ -1,10 +1,7 @@
 import test from "ava";
-import browserEnv from "browser-env";
+import "./_browser-mock";
 /** @jsx createElement */
 import { render, createElement } from "../src/didact";
-
-// Create document global var
-browserEnv(["document"]);
 
 test.beforeEach(t => {
   let root = document.getElementById("root");
@@ -25,7 +22,12 @@ test("render jsx div", t => {
 
 test("render div with children", t => {
   const root = t.context.root;
-  const element = <div><b /><a href="foo" /></div>;
+  const element = (
+    <div>
+      <b />
+      <a href="foo" />
+    </div>
+  );
   render(element, root);
   t.is(root.innerHTML, '<div><b></b><a href="foo"></a></div>');
 });

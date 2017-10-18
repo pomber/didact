@@ -1,10 +1,7 @@
 import test from "ava";
-import browserEnv from "browser-env";
+import "./_browser-mock";
 /** @jsx createElement */
 import { render, createElement, Component } from "../src/didact";
-
-// Create document global var
-browserEnv(["document"]);
 
 test.beforeEach(t => {
   let root = document.getElementById("root");
@@ -20,7 +17,12 @@ test("render component", t => {
   const root = t.context.root;
   class FooComponent extends Component {
     render() {
-      return <div><b /><a href="foo" /></div>;
+      return (
+        <div>
+          <b />
+          <a href="foo" />
+        </div>
+      );
     }
   }
   render(<FooComponent />, root);
@@ -31,7 +33,12 @@ test("render component with props", t => {
   const root = t.context.root;
   class FooComponent extends Component {
     render() {
-      return <div><b>{this.props.name}</b><a href="foo" /></div>;
+      return (
+        <div>
+          <b>{this.props.name}</b>
+          <a href="foo" />
+        </div>
+      );
     }
   }
   render(<FooComponent name="Bar" />, root);

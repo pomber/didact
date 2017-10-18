@@ -1,10 +1,7 @@
 import test from "ava";
-import browserEnv from "browser-env";
+import "./_browser-mock";
 /** @jsx createElement */
 import { render, createElement } from "../src/didact";
-
-// Create document global var
-browserEnv(["document"]);
 
 test.beforeEach(t => {
   let root = document.getElementById("root");
