@@ -20,16 +20,7 @@ Didact's goal is to make React internals easier to understand by providing a sim
 | [Element creation and JSX](https://engineering.hexacta.com/didact-element-creation-and-jsx-d05171c55c56) | [codepen](https://codepen.io/pomber/pen/xdmoWE?editors=0010) | [diff](https://github.com/hexacta/didact/commit/15010f8e7b8b54841d1e2dd9eacf7b3c06b1a24b) |
 | [Virtual DOM and reconciliation](https://engineering.hexacta.com/didact-instances-reconciliation-and-virtual-dom-9316d650f1d0) | [codepen](https://codepen.io/pomber/pen/WjLqYW?editors=0010)  | [diff](https://github.com/hexacta/didact/commit/8eb7ffd6f5e210526fb4c274c4f60d609fe2f810) [diff](https://github.com/hexacta/didact/commit/6f5fdb7331ed77ba497fa5917d920eafe1f4c8dc) [diff](https://github.com/hexacta/didact/commit/35619a039d48171a6e6c53bd433ed049f2d718cb) |
 | [Components and State](https://engineering.hexacta.com/didact-components-and-state-53ab4c900e37) | [codepen](https://codepen.io/pomber/pen/RVqBrx) | [diff](https://github.com/hexacta/didact/commit/2e290ff5c486b8a3f361abcbc6e36e2c21db30b8) |
-
-Things that are not included in Didact (yet):  
-- Functional components (but should be easy to add)
-- Context
-- Lifecycle methods
-- The `ref` attribute
-- Reconciliation by `key` (only reconciliation by children order)
-- [Fiber](https://facebook.github.io/react/contributing/codebase-overview.html#fiber-reconciler)
-- Others renderers (only DOM is supported)
-- Old browsers support
+| [Fiber: Incremental reconciliation](https://engineering.hexacta.com/didact-fiber-incremental-reconciliation-b2fe028dcaec) | [codepen](https://codepen.io/pomber/pen/veVOdd) | [diff](https://github.com/hexacta/didact/commit/6174a2289e69895acd8fc85abdc3aaff1ded9011) |
 
 ## Usage
 > 🚧 Don't use this for production code!
@@ -82,6 +73,7 @@ Didact.render(
 [hello-world](https://rawgit.com/hexacta/didact/master/examples/hello-world/index.html)  
 [hello-world-jsx](https://rawgit.com/hexacta/didact/master/examples/hello-world-jsx/index.html)  
 [todomvc](https://didact-todomvc.surge.sh)  
+[incremental-rendering-demo](https://pomber.github.io/incremental-rendering-demo/didact.html)
 
 ## License
 
