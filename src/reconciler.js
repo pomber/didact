@@ -47,7 +47,7 @@ function workLoop(deadline) {
   if (!nextUnitOfWork) {
     resetNextUnitOfWork();
   }
-  while (nextUnitOfWork) {
+  while (nextUnitOfWork && deadline.timeRemaining() > ENOUGH_TIME) {
     nextUnitOfWork = performUnitOfWork(nextUnitOfWork);
   }
   if (pendingCommit) {
