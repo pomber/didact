@@ -1,28 +1,38 @@
-<p align="center"><img src="https://cloud.githubusercontent.com/assets/1911623/25565381/339d8c36-2d9c-11e7-89ae-8f6c32adf35f.png"></p>
+<p align="center"><img src="https://cloud.githubusercontent.com/assets/1911623/26426031/5176c348-40ad-11e7-9f1a-1e2f8840b562.jpeg"></p>
 
-#
-[![Build Status](https://travis-ci.org/hexacta/didact.svg?branch=master)](https://travis-ci.org/hexacta/didact) [![npm version](https://img.shields.io/npm/v/didact.svg?style=flat)](https://www.npmjs.com/package/didact)
+# Didact [![Build Status](https://travis-ci.org/hexacta/didact.svg?branch=master)](https://travis-ci.org/hexacta/didact) [![npm version](https://img.shields.io/npm/v/didact.svg?style=flat)](https://www.npmjs.com/package/didact)
+ 
+> A DIY guide to build your own React
+
+This repository goes together with a [series of posts](https://engineering.hexacta.com/didact-learning-how-react-works-by-building-it-from-scratch-51007984e5c5) that explains how to build React from scratch step by step.  
 
 
-> What if we rebuild React making code readability our main concern?  
+## Motivation
 
-Didact's goal is to make React internals easier to understand by providing a simpler implementation of the same API. 
-
-Didact is still under development 🚧. Nevertheless, the current version should be able to at least support the [todo-mvc sample](https://github.com/hexacta/didact/tree/master/examples/todomvc) (ported from Preact).
+Didact's goal is to make React internals easier to understand by providing a simpler implementation of the same API and step-by-step instructions on how to build it. Once you understand how React works on the inside, using it will be easier. 
 
 ## Step-by-step guide
 
-We are doing a step-by-step guide to the code on Medium. These are the posts of the series so far:
+| Medium Post | Code sample | Commits |
+| --- | :---: | :---: |
+| [Introduction](https://engineering.hexacta.com/didact-learning-how-react-works-by-building-it-from-scratch-51007984e5c5) |  |  | 
+| [Rendering DOM elements](https://engineering.hexacta.com/didact-rendering-dom-elements-91c9aa08323b) | [codepen](https://codepen.io/pomber/pen/eWbwBq?editors=0010) | [diff](https://github.com/hexacta/didact/commit/fc4d360d91a1e68f0442d39dbce5b9cca5a08f24) |
+| [Element creation and JSX](https://engineering.hexacta.com/didact-element-creation-and-jsx-d05171c55c56) | [codepen](https://codepen.io/pomber/pen/xdmoWE?editors=0010) | [diff](https://github.com/hexacta/didact/commit/15010f8e7b8b54841d1e2dd9eacf7b3c06b1a24b) |
+| [Virtual DOM and reconciliation](https://engineering.hexacta.com/didact-instances-reconciliation-and-virtual-dom-9316d650f1d0) | [codepen](https://codepen.io/pomber/pen/WjLqYW?editors=0010)  | [diff](https://github.com/hexacta/didact/commit/8eb7ffd6f5e210526fb4c274c4f60d609fe2f810) [diff](https://github.com/hexacta/didact/commit/6f5fdb7331ed77ba497fa5917d920eafe1f4c8dc) [diff](https://github.com/hexacta/didact/commit/35619a039d48171a6e6c53bd433ed049f2d718cb) |
+| [Components and State](https://engineering.hexacta.com/didact-components-and-state-53ab4c900e37) | [codepen](https://codepen.io/pomber/pen/RVqBrx) | [diff](https://github.com/hexacta/didact/commit/2e290ff5c486b8a3f361abcbc6e36e2c21db30b8) |
 
-| Medium Post | Code sample |
-| --- | --- |
-| [Introduction](https://engineering.hexacta.com/didact-learning-how-react-works-by-building-it-from-scratch-51007984e5c5) |  |
-| [Rendering DOM elements](https://engineering.hexacta.com/didact-rendering-dom-elements-91c9aa08323b) | [codepen](https://codepen.io/pomber/pen/xddXwq?editors=0010) |
-| [Element creation and JSX](https://engineering.hexacta.com/didact-rendering-dom-elements-91c9aa08323b) | [codepen](https://codepen.io/pomber/pen/xddXwq?editors=0010) |
-| [Virtual DOM and reconciliation](https://engineering.hexacta.com/didact-instances-reconciliation-and-virtual-dom-9316d650f1d0) | [codepen](https://codepen.io/pomber/pen/KmyBvO?editors=0010)  |
-| Components |  |
+Things that are not included in Didact (yet):  
+- Functional components (but should be easy to add)
+- Context
+- Lifecycle methods
+- The `ref` attribute
+- Reconciliation by `key` (only reconciliation by children order)
+- [Fiber](https://facebook.github.io/react/contributing/codebase-overview.html#fiber-reconciler)
+- Others renderers (only DOM is supported)
+- Old browsers support
 
 ## Usage
+> 🚧 Don't use this for production code!
 
 Install it with npm or yarn:  
 
@@ -37,8 +47,28 @@ And then use it like you use React:
 import Didact from 'didact';
 
 class HelloMessage extends Didact.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 1
+    };
+  }
+
+  handleClick() {
+    this.setState({
+      count: this.state.count + 1
+    });
+  }
+
   render() {
-    return <div>Hello {this.props.name}</div>;
+    const name = this.props.name;
+    const times = this.state.count;
+    return (
+      <div onClick={e => this.handleClick()}>
+        Hello {name + "!".repeat(times)}
+      </div>
+    );
   }
 }
 
@@ -47,7 +77,6 @@ Didact.render(
   document.getElementById('container')
 );
 ```
-
 
 ## Demos
 [hello-world](https://rawgit.com/hexacta/didact/master/examples/hello-world/index.html)  
