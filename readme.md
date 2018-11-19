@@ -7,6 +7,9 @@
 This repository goes together with a [series of posts](https://engineering.hexacta.com/didact-learning-how-react-works-by-building-it-from-scratch-51007984e5c5) that explains how to build React from scratch step by step.  
 
 
+> Follow [@pomber](https://twitter.com/pomber) for updates
+
+
 ## Motivation
 
 Didact's goal is to make React internals easier to understand by providing a simpler implementation of the same API and step-by-step instructions on how to build it. Once you understand how React works on the inside, using it will be easier. 
