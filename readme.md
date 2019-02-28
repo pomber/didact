@@ -6,9 +6,8 @@
 
 This repository goes together with a [series of posts](https://engineering.hexacta.com/didact-learning-how-react-works-by-building-it-from-scratch-51007984e5c5) that explains how to build React from scratch step by step.  
 
-
-> Follow [@pomber](https://twitter.com/pomber) for updates
-
+> If you like this project consider [backing my open source work on Patreon!](https://patreon.com/pomber)  
+> And follow [@pomber](https://twitter.com/pomber) on twitter for updates.
 
 ## Motivation
 
