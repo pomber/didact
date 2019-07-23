@@ -204,7 +204,17 @@ function updateFunctionComponent(fiber) {
 }
 
 function useState(initial) {
-  // TODO
+  const oldHook =
+    wipFiber.alternate &&
+    wipFiber.alternate.hooks &&
+    wipFiber.alternate.hooks[hookIndex]
+  const hook = {
+    state: oldHook ? oldHook.state : initial,
+  }
+
+  wipFiber.hooks.push(hook)
+  hookIndex++
+  return [hook.state]
 }
 
 function updateHostComponent(fiber) {
