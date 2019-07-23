@@ -63,7 +63,13 @@ function workLoop(deadline) {
 requestIdleCallback(workLoop)
 
 function performUnitOfWork(fiber) {
-  // TODO
+  if (!fiber.dom) {
+    fiber.dom = createDom(fiber)
+  }
+
+  if (fiber.parent) {
+    fiber.parent.dom.appendChild(fiber.dom)
+  }
 }
 
 const Didact = {
