@@ -40,6 +40,7 @@ function createDom(fiber) {
 
 function commitRoot() {
   commitWork(wipRoot.child)
+  currentRoot = wipRoot
   wipRoot = null
 }
 
@@ -59,11 +60,13 @@ function render(element, container) {
     props: {
       children: [element],
     },
+    alternate: currentRoot,
   }
   nextUnitOfWork = wipRoot
 }
 
 let nextUnitOfWork = null
+let currentRoot = null
 let wipRoot = null
 
 function workLoop(deadline) {
