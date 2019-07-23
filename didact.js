@@ -146,7 +146,8 @@ function reconcileChildren(wipFiber, elements) {
       }
     }
     if (oldFiber && !sameType) {
-      // TODO delete the oldFiber's node
+      oldFiber.effectTag = "DELETION"
+      deletions.push(oldFiber)
     }
 
     if (oldFiber) {
