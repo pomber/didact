@@ -28,18 +28,31 @@ function createDom(fiber) {
       ? document.createTextNode("")
       : document.createElement(fiber.type)
 
-  const isProperty = key => key !== "children"
-  Object.keys(fiber.props)
-    .filter(isProperty)
-    .forEach(name => {
-      dom[name] = fiber.props[name]
-    })
+  updateDom(dom, {}, fiber.props)
 
   return dom
 }
 
+const isProperty = key => key !== "children"
+const isNew = (prev, next) => key =>
+  prev[key] !== next[key]
+const isGone = (prev, next) => key => !(key in next)
 function updateDom(dom, prevProps, nextProps) {
-  // TODO
+  // Remove old properties
+  Object.keys(prevProps)
+    .filter(isProperty)
+    .filter(isGone(prevProps, nextProps))
+    .forEach(name => {
+      dom[name] = ""
+    })
+
+  // Set new or changed properties
+  Object.keys(nextProps)
+    .filter(isProperty)
+    .filter(isNew(prevProps, nextProps))
+    .forEach(name => {
+      dom[name] = nextProps[name]
+    })
 }
 
 function commitRoot() {
@@ -53,6 +66,7 @@ function commitWork(fiber) {
   if (!fiber) {
     return
   }
+
   const domParent = fiber.parent.dom
   if (
     fiber.effectTag === "PLACEMENT" &&
