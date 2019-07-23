@@ -22,8 +22,13 @@ function createTextElement(text) {
   }
 }
 
+function render(element, container) {
+  // TODO
+}
+
 const Didact = {
   createElement,
+  render,
 }
 
 /** @jsx Didact.createElement */
@@ -34,4 +39,4 @@ const element = (
   </div>
 )
 const container = document.getElementById("root")
-ReactDOM.render(element, container)
+Didact.render(element, container)
