@@ -70,6 +70,21 @@ function performUnitOfWork(fiber) {
   if (fiber.parent) {
     fiber.parent.dom.appendChild(fiber.dom)
   }
+
+  const elements = fiber.props.children
+  let index = 0
+  let prevSibling = null
+
+  while (index < elements.length) {
+    const element = elements[index]
+
+    const newFiber = {
+      type: element.type,
+      props: element.props,
+      parent: fiber,
+      dom: null,
+    }
+  }
 }
 
 const Didact = {
