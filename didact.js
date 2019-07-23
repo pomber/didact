@@ -22,24 +22,24 @@ function createTextElement(text) {
   }
 }
 
-function render(element, container) {
+function createDom(fiber) {
   const dom =
-    element.type == "TEXT_ELEMENT"
+    fiber.type == "TEXT_ELEMENT"
       ? document.createTextNode("")
-      : document.createElement(element.type)
+      : document.createElement(fiber.type)
 
   const isProperty = key => key !== "children"
-  Object.keys(element.props)
+  Object.keys(fiber.props)
     .filter(isProperty)
     .forEach(name => {
-      dom[name] = element.props[name]
+      dom[name] = fiber.props[name]
     })
 
-  element.props.children.forEach(child =>
-    render(child, dom)
-  )
+  return dom
+}
 
-  container.appendChild(dom)
+function render(element, container) {
+  // TODO
 }
 
 let nextUnitOfWork = null
@@ -57,7 +57,7 @@ function workLoop(deadline) {
 
 requestIdleCallback(workLoop)
 
-function performUnitOfWork(nextUnitOfWork) {
+function performUnitOfWork(fiber) {
   // TODO
 }
 
