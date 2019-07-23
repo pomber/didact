@@ -38,6 +38,10 @@ function createDom(fiber) {
   return dom
 }
 
+function updateDom(dom, prevProps, nextProps) {
+  // TODO
+}
+
 function commitRoot() {
   deletions.forEach(commitWork)
   commitWork(wipRoot.child)
