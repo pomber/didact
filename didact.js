@@ -120,7 +120,20 @@ function reconcileChildren(wipFiber, elements) {
     const element = elements[index]
     let newFiber = null
 
-    // TODO compare oldFiber to element
+    const sameType =
+      oldFiber &&
+      element &&
+      element.type == oldFiber.type
+
+    if (sameType) {
+      // TODO update the node
+    }
+    if (element && !sameType) {
+      // TODO add this node
+    }
+    if (oldFiber && !sameType) {
+      // TODO delete the oldFiber's node
+    }
 
     if (oldFiber) {
       oldFiber = oldFiber.sibling
