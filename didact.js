@@ -55,6 +55,15 @@ function commitWork(fiber) {
     fiber.dom != null
   ) {
     domParent.appendChild(fiber.dom)
+  } else if (
+    fiber.effectTag === "UPDATE" &&
+    fiber.dom != null
+  ) {
+    updateDom(
+      fiber.dom,
+      fiber.alternate.props,
+      fiber.props
+    )
   } else if (fiber.effectTag === "DELETION") {
     domParent.removeChild(fiber.dom)
   }
