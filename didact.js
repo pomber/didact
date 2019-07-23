@@ -126,7 +126,14 @@ function reconcileChildren(wipFiber, elements) {
       element.type == oldFiber.type
 
     if (sameType) {
-      // TODO update the node
+      newFiber = {
+        type: oldFiber.type,
+        props: element.props,
+        dom: oldFiber.dom,
+        parent: wipFiber,
+        alternate: oldFiber,
+        effectTag: "UPDATE",
+      }
     }
     if (element && !sameType) {
       // TODO add this node
