@@ -136,7 +136,14 @@ function reconcileChildren(wipFiber, elements) {
       }
     }
     if (element && !sameType) {
-      // TODO add this node
+      newFiber = {
+        type: element.type,
+        props: element.props,
+        dom: null,
+        parent: wipFiber,
+        alternate: null,
+        effectTag: "PLACEMENT",
+      }
     }
     if (oldFiber && !sameType) {
       // TODO delete the oldFiber's node
