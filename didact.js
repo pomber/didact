@@ -50,7 +50,13 @@ function commitWork(fiber) {
     return
   }
   const domParent = fiber.parent.dom
-  domParent.appendChild(fiber.dom)
+  if (
+    fiber.effectTag === "PLACEMENT" &&
+    fiber.dom != null
+  ) {
+    domParent.appendChild(fiber.dom)
+  }
+
   commitWork(fiber.child)
   commitWork(fiber.sibling)
 }
