@@ -73,6 +73,20 @@ function updateDom(dom, prevProps, nextProps) {
     .forEach(name => {
       dom[name] = nextProps[name]
     })
+
+  // Add event listeners
+  Object.keys(nextProps)
+    .filter(isEvent)
+    .filter(isNew(prevProps, nextProps))
+    .forEach(name => {
+      const eventType = name
+        .toLowerCase()
+        .substring(2)
+      dom.addEventListener(
+        eventType,
+        nextProps[name]
+      )
+    })
 }
 
 function commitRoot() {
