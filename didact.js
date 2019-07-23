@@ -39,6 +39,7 @@ function createDom(fiber) {
 }
 
 function commitRoot() {
+  deletions.forEach(commitWork)
   commitWork(wipRoot.child)
   currentRoot = wipRoot
   wipRoot = null
