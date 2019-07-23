@@ -62,12 +62,14 @@ function render(element, container) {
     },
     alternate: currentRoot,
   }
+  deletions = []
   nextUnitOfWork = wipRoot
 }
 
 let nextUnitOfWork = null
 let currentRoot = null
 let wipRoot = null
+let deletions = null
 
 function workLoop(deadline) {
   let shouldYield = false
