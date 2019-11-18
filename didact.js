@@ -121,6 +121,7 @@ function commitWork(fiber) {
       fiber.alternate.props,
       fiber.props
     )
+    domParent.appendChild(fiber.dom)
   } else if (fiber.effectTag === "DELETION") {
     commitDeletion(fiber, domParent)
   }
