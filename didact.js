@@ -331,7 +331,7 @@ const Didact = {
 function Counter() {
   const [state, setState] = Didact.useState(1)
   return (
-    <h1 onClick={() => setState(c => c + 1)}>
+    <h1 style={{marginTop: '100px', textAlign: 'center'}} className={'foo bar'} onClick={() => setState(c => c + 1)}>
       Count: {state}
     </h1>
   )
