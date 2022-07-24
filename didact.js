@@ -123,6 +123,7 @@ function commitWork(fiber) {
     )
   } else if (fiber.effectTag === "DELETION") {
     commitDeletion(fiber, domParent)
+    return
   }
 
   commitWork(fiber.child)
