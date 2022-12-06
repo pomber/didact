@@ -241,62 +241,103 @@ function updateHostComponent(fiber) {
   reconcileChildren(fiber, fiber.props.children)
 }
 
-function reconcileChildren(wipFiber, elements) {
-  let index = 0
-  let oldFiber =
-    wipFiber.alternate && wipFiber.alternate.child
-  let prevSibling = null
+const reconcileChildren = (
+  fiber
+  children
+)
+  => {
+    let oldFiber = fiber.alternate && fiber.alternate.child
+    let prevSibling = null
 
-  while (
-    index < elements.length ||
-    oldFiber != null
-  ) {
-    const element = elements[index]
-    let newFiber = null
+    children.forEach((el,index)=>{
+      let newFiber = null
+      if(oldFiber != null){
+        const sameType = oldFiber && el  && el.type === oldFiber.type
 
-    const sameType =
-      oldFiber &&
-      element &&
-      element.type == oldFiber.type
+        if(sameType){
+           // in this condition element and oldFiber is exist and
+           // both types are equal maybe props are changed
+          newFiber = {
+            type:oldFiber.type,
+            props:el.props, // assign new props 
+            dom:oldFiber.dom,
+            parent:fiber,
+            alternate:oldFiber,
+            effectTag:"UPDATE",
+            child:null,
+            sibling:null
+          }
+        }
 
-    if (sameType) {
-      newFiber = {
-        type: oldFiber.type,
-        props: element.props,
-        dom: oldFiber.dom,
-        parent: wipFiber,
-        alternate: oldFiber,
-        effectTag: "UPDATE",
+        if(el && !sameType ){
+          newFiber = {
+            type:el.type,
+            props:el.props, 
+            dom:null,
+            parent:fiber,
+            alternate:null,
+            effectTag:"PLACEMENT",
+            child:null,
+            sibling:null
+          }
+        }
+
+        if(oldFiber && !sameType){
+          oldFiber.effectTag = "DELETION"
+          deletion.push(oldFiber)
+        }
+
+        if(oldFiber){
+          oldFiber = oldFiber.sibling
+          newFiber = {
+            type:el.type,
+            props:el.props, 
+            dom:null,
+            parent:fiber,
+            alternate:null,
+            child:null,
+            sibling:null
+          }
+        }
+
+
+        if (index === 0){
+          fiber.child = newFiber
+        }else{
+          if(prevSibling){
+            prevSibling.sibling = newFiber
+          }
+        }
+        prevSibling = newFiber
+      }else{
+        // create a first render dom
+         
+         newFiber = {
+          type:el.type,
+          props:el.props,
+          parent:fiber,
+          dom:null,
+          child:null,
+          sibling:null,
+          alternate:null
+        
+        }
+        newFiber.alternate = newFiber
+        if (index === 0){
+          fiber.child = newFiber
+        }else{
+          if(prevSibling){
+            prevSibling.sibling = newFiber
+          }
+        }
+        prevSibling = newFiber
+
+        return
       }
-    }
-    if (element && !sameType) {
-      newFiber = {
-        type: element.type,
-        props: element.props,
-        dom: null,
-        parent: wipFiber,
-        alternate: null,
-        effectTag: "PLACEMENT",
-      }
-    }
-    if (oldFiber && !sameType) {
-      oldFiber.effectTag = "DELETION"
-      deletions.push(oldFiber)
-    }
 
-    if (oldFiber) {
-      oldFiber = oldFiber.sibling
-    }
+  })
 
-    if (index === 0) {
-      wipFiber.child = newFiber
-    } else if (element) {
-      prevSibling.sibling = newFiber
-    }
 
-    prevSibling = newFiber
-    index++
-  }
 }
 
 const Didact = {
