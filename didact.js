@@ -34,8 +34,9 @@ function createDom(fiber) {
 }
 
 const isEvent = key => key.startsWith("on")
+const isStyleProperty = (key) => key === "style"
 const isProperty = key =>
-  key !== "children" && !isEvent(key)
+  key !== "children" && !isEvent(key) && !isStyleProperty(key)
 const isNew = (prev, next) => key =>
   prev[key] !== next[key]
 const isGone = (prev, next) => key => !(key in next)
@@ -57,6 +58,12 @@ function updateDom(dom, prevProps, nextProps) {
         prevProps[name]
       )
     })
+
+  // remove old inline style
+  if (Object.keys(prevProps).some(isStyleProperty)) {
+    dom.removeAttribute("style")
+  }
+
 
   // Remove old properties
   Object.keys(prevProps)
@@ -87,6 +94,13 @@ function updateDom(dom, prevProps, nextProps) {
         nextProps[name]
       )
     })
+
+  // Set new inline style
+  if (Object.keys(nextProps).some(isStyleProperty)) {
+    dom.setAttribute("style", Object.keys(nextProps["style"]).map((key) => {
+      return `${camelCase2KebabcCase(key)}:${nextProps["style"][key]};`;
+    }).join(" "))
+  }
 }
 
 function commitRoot() {
@@ -95,6 +109,13 @@ function commitRoot() {
   currentRoot = wipRoot
   wipRoot = null
 }
+
+function camelCase2KebabcCase(variable) {
+  return variable.replace(/[A-Z]/g, function (item) {
+    return '-' + item.toLowerCase();
+  });
+}
+
 
 function commitWork(fiber) {
   if (!fiber) {
@@ -308,9 +329,17 @@ const Didact = {
 /** @jsx Didact.createElement */
 function Counter() {
   const [state, setState] = Didact.useState(1)
+  const plusButtonStyle = {
+    backgroundColor: 'red'
+  }
+  const minusButtonStyle = {
+    backgroundColor: 'yellow'
+  }
   return (
-    <h1 onClick={() => setState(c => c + 1)}>
+    <h1>
       Count: {state}
+      <button onClick={() => setState(c => c + 1)} style={plusButtonStyle}>+</button>
+      <button onClick={() => setState(c => c - 1)} style={minusButtonStyle}>-</button>
     </h1>
   )
 }
