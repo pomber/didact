@@ -219,7 +219,7 @@ function useState(initial) {
   })
 
   const setState = action => {
-    hook.queue.push(action)
+    hook.queue.push(typeof action === "function" ? action : (prev) => action)
     wipRoot = {
       dom: currentRoot.dom,
       props: currentRoot.props,
