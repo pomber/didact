@@ -38,14 +38,14 @@ const isProperty = key =>
   key !== "children" && !isEvent(key)
 const isNew = (prev, next) => key =>
   prev[key] !== next[key]
-const isGone = (prev, next) => key => !(key in next)
+const isGone = (next) => key => !(key in next)
 function updateDom(dom, prevProps, nextProps) {
   //Remove old or changed event listeners
   Object.keys(prevProps)
     .filter(isEvent)
     .filter(
       key =>
-        !(key in nextProps) ||
+        isGone(nextProps)(key) ||
         isNew(prevProps, nextProps)(key)
     )
     .forEach(name => {
@@ -61,7 +61,7 @@ function updateDom(dom, prevProps, nextProps) {
   // Remove old properties
   Object.keys(prevProps)
     .filter(isProperty)
-    .filter(isGone(prevProps, nextProps))
+    .filter(isGone(nextProps))
     .forEach(name => {
       dom[name] = ""
     })
