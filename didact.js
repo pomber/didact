@@ -71,7 +71,14 @@ function updateDom(dom, prevProps, nextProps) {
     .filter(isProperty)
     .filter(isNew(prevProps, nextProps))
     .forEach(name => {
-      dom[name] = nextProps[name]
+      if (name === 'style') { // update style
+        transformDomStyle(dom, nextProps.style)
+      } else if (name === 'className') { // update className
+        prevProps.className && dom.classList.remove(...prevProps.className.split(/\s+/))
+        dom.classList.add(...nextProps.className.split(/\s+/))
+      } else {
+        dom[name] = nextProps[name]
+      }
     })
 
   // Add event listeners
@@ -87,6 +94,21 @@ function updateDom(dom, prevProps, nextProps) {
         nextProps[name]
       )
     })
+}
+
+const reg = /[A-Z]/g
+function transformDomStyle(dom, style) {
+  dom.style = Object.keys(style)
+    .reduce((acc, styleName) => {
+      const key = styleName.replace(
+        reg, 
+        function(v) { 
+          return '-' + v.toLowerCase() 
+        }
+      )
+      acc += `${key}: ${style[styleName]};`
+      return acc
+    }, '')
 }
 
 function commitRoot() {
@@ -309,7 +331,7 @@ const Didact = {
 function Counter() {
   const [state, setState] = Didact.useState(1)
   return (
-    <h1 onClick={() => setState(c => c + 1)}>
+    <h1 style={{marginTop: '100px', textAlign: 'center'}} className={'foo bar'} onClick={() => setState(c => c + 1)}>
       Count: {state}
     </h1>
   )
